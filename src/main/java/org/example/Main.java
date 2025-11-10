@@ -8,6 +8,7 @@ public class Main {
             System.out.println("creating a thread");
 //            TODO look into platform threads and why the runnable isn't being executed'
             var thread = new Thread(new ParkSomeCarsThenMakeThemLeave());
+            thread.start();
         }
         Thread.sleep(10000);
     }

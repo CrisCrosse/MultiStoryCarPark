@@ -9,6 +9,7 @@ public class ParkSomeCarsThenMakeThemLeave implements Runnable {
     public void run() {
         System.out.printf("In Thread %s and about to park three vehicles%n", Thread.currentThread().threadId());
         var carParkInstance = MultiStoryCarPark.getInstance();
+
         var car = new Car();
         var truck = new Truck();
         var motorcycle = new Motorcycle();
