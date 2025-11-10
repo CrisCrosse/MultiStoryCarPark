@@ -1,0 +1,10 @@
+package org.example.ParkingSpot;
+
+import org.example.VehicleSize;
+
+public class MotorcycleParkingSpot extends ParkingSpot {
+    public MotorcycleParkingSpot() {
+        super();
+        this.size = VehicleSize.SMALL;
+    }
+}
