@@ -5,6 +5,8 @@ import org.example.Models.ParkingArea.IParkingAreaCreator;
 import org.example.Models.ParkingArea.ParkingArea;
 import org.example.Models.ParkingSpot.ParkingSpot;
 import org.example.Models.Vehicle.Vehicle;
+import org.example.Strategies.FillFromTheBottomSpotFinder;
+import org.example.Strategies.FindFreeSpotStrategy;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -14,18 +16,23 @@ import java.util.List;
 
 public class MultiStoryCarPark {
 //    final means that this instance variable can only be assigned a value once in the constructor
-    final private HashSet<Vehicle> vehiclesCurrentlyInside;
+    final private HashSet<Vehicle> parkedVehicles;
     final private List<ParkingArea> levels;
     final private int NUMBER_OF_LEVELS = 5;
     final private int SPACES_PER_LEVEL = 30;
-    final static private MultiStoryCarPark INSTANCE = new MultiStoryCarPark(new EvenlyDistributedParkingAreaCreator());
+    final private FindFreeSpotStrategy findFreeSpotStrategy;
+    final static private MultiStoryCarPark INSTANCE = new MultiStoryCarPark(new EvenlyDistributedParkingAreaCreator(),
+            new FillFromTheBottomSpotFinder());
 
-    private MultiStoryCarPark (IParkingAreaCreator parkingSpotMakeupStrategy) {
+
+    private MultiStoryCarPark (IParkingAreaCreator parkingSpotMakeupStrategy,
+                               FindFreeSpotStrategy findFreeSpotStrategy) {
         this.levels = new ArrayList<>(NUMBER_OF_LEVELS);
         for (int i = 0; i < NUMBER_OF_LEVELS; i++) {
             this.levels.add(parkingSpotMakeupStrategy.buildParkingArea(SPACES_PER_LEVEL));
         }
-        vehiclesCurrentlyInside = new HashSet<>(NUMBER_OF_LEVELS * SPACES_PER_LEVEL);
+        this.parkedVehicles = new HashSet<>(NUMBER_OF_LEVELS * SPACES_PER_LEVEL);
+        this.findFreeSpotStrategy = findFreeSpotStrategy;
     }
 
     public static MultiStoryCarPark getInstance() {
@@ -38,22 +45,16 @@ public class MultiStoryCarPark {
      * or there are no suitable space types. Otherwise, true.
      */
     public boolean enter(Vehicle vehicle) {
-        if (vehiclesCurrentlyInside.size() == NUMBER_OF_LEVELS * SPACES_PER_LEVEL) {
+        if (parkedVehicles.size() == NUMBER_OF_LEVELS * SPACES_PER_LEVEL) {
             return false;
         }
-        if (vehiclesCurrentlyInside.contains(vehicle)) {
+        if (parkedVehicles.contains(vehicle)) {
             return false;
         }
 
-        for (ParkingArea level : levels) {
-            for (ParkingSpot spot : level.parkingArea) {
-                if (spot.park(vehicle)) {
-                    vehiclesCurrentlyInside.add(vehicle);
-                    return true;
-                }
-            }
+        if (findFreeSpotStrategy.FindFreeSpot(vehicle, levels)) {
+            parkedVehicles.add(vehicle);
         }
-        //        should never reach this due to the set check
         return false;
     }
 
@@ -62,13 +63,13 @@ public class MultiStoryCarPark {
      * @return returns false if the vehicle was not inside the car park. Otherwise, true.
      */
     public boolean leave(Vehicle vehicle) {
-        if (!vehiclesCurrentlyInside.contains(vehicle)) {
+        if (!parkedVehicles.contains(vehicle)) {
             return false;
         }
         for (ParkingArea level : levels) {
             for (ParkingSpot spot : level.parkingArea) {
                 if (spot.release(vehicle)) {
-                    vehiclesCurrentlyInside.remove(vehicle);
+                    parkedVehicles.remove(vehicle);
                     return true;
                 }
             }
