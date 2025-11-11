@@ -6,7 +6,6 @@ public class Main {
     public static void main(String[] args) throws InterruptedException {
         for (int i = 1; i <= 100; i++) {
             System.out.println("creating a thread");
-//            TODO look into platform threads and why the runnable isn't being executed'
             var thread = new Thread(new ParkSomeCarsThenMakeThemLeave());
             thread.start();
         }
