@@ -1,6 +1,6 @@
-package org.example.ParkingSpot;
+package org.example.Models.ParkingSpot;
 
-import org.example.Vehicle.Vehicle;
+import org.example.Models.Vehicle.Vehicle;
 import org.example.VehicleSize;
 
 public abstract class ParkingSpot {

@@ -1,6 +1,6 @@
-package org.example.ParkingArea;
+package org.example.Models.ParkingArea;
 
-import org.example.ParkingSpot.ParkingSpot;
+import org.example.Models.ParkingSpot.ParkingSpot;
 
 import java.util.List;
 

@@ -1,8 +1,8 @@
 package org.example;
 
-import org.example.Vehicle.Car;
-import org.example.Vehicle.Motorcycle;
-import org.example.Vehicle.Truck;
+import org.example.Models.Vehicle.Car;
+import org.example.Models.Vehicle.Motorcycle;
+import org.example.Models.Vehicle.Truck;
 
 public class ParkSomeCarsThenMakeThemLeave implements Runnable {
     @Override

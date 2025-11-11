@@ -1,4 +1,4 @@
-package org.example.ParkingSpot;
+package org.example.Models.ParkingSpot;
 
 import org.example.VehicleSize;
 

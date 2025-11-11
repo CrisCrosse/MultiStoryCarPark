@@ -1,10 +1,10 @@
 package org.example;
 
-import org.example.ParkingArea.EvenlyDistributedParkingAreaCreator;
-import org.example.ParkingArea.IParkingAreaCreator;
-import org.example.ParkingArea.ParkingArea;
-import org.example.ParkingSpot.ParkingSpot;
-import org.example.Vehicle.Vehicle;
+import org.example.Models.ParkingArea.EvenlyDistributedParkingAreaCreator;
+import org.example.Models.ParkingArea.IParkingAreaCreator;
+import org.example.Models.ParkingArea.ParkingArea;
+import org.example.Models.ParkingSpot.ParkingSpot;
+import org.example.Models.Vehicle.Vehicle;
 
 import java.util.ArrayList;
 import java.util.HashSet;

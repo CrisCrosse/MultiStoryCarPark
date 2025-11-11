@@ -1,9 +1,9 @@
-package org.example.ParkingArea;
+package org.example.Models.ParkingArea;
 
-import org.example.ParkingSpot.CarParkingSpot;
-import org.example.ParkingSpot.MotorcycleParkingSpot;
-import org.example.ParkingSpot.ParkingSpot;
-import org.example.ParkingSpot.TruckParkingSpot;
+import org.example.Models.ParkingSpot.CarParkingSpot;
+import org.example.Models.ParkingSpot.MotorcycleParkingSpot;
+import org.example.Models.ParkingSpot.ParkingSpot;
+import org.example.Models.ParkingSpot.TruckParkingSpot;
 
 import java.util.ArrayList;
 import java.util.List;

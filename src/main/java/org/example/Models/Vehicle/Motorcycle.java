@@ -1,4 +1,4 @@
-package org.example.Vehicle;
+package org.example.Models.Vehicle;
 
 import org.example.VehicleSize;
 
