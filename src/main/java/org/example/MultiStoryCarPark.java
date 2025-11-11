@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
+// TODO: add payment interface
+
 public class MultiStoryCarPark {
 //    final means that this instance variable can only be assigned a value once in the constructor
     final private HashSet<Vehicle> vehiclesCurrentlyInside;
