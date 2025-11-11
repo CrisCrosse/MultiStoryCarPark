@@ -17,7 +17,11 @@ public abstract class ParkingSpot {
         return true;
     }
 
-    public void release() {
-        this.vehicle = null;
+    public boolean release(Vehicle vehicle) {
+        if (this.vehicle == vehicle) {
+            this.vehicle = null;
+            return true;
+        }
+        return false;
     }
 }
